@@ -1,10 +1,16 @@
-node_modules
-dist
-.turbo
-.build
-.local
-.vscode
-!/lambda-layers/*/node_modules
-packages/*/package-lock.json
-terraform/.terraform
-terraform/*.lock.hcl
+# Node
+node_modules/
+dist/
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+
+# Ambiente
+.env
+.env.*
+
+# Outras
+*.zip
+*.log

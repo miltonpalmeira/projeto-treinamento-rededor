@@ -1,20 +1,19 @@
-resource "cognito_user_pool" "this" {
-  name = var.name
+# Cria o cognito user pool
+resource "aws_cognito_user_pool" "this" {
+  name = "cgnt-${var.env}-${var.project}-auth"
 
-  auto_verified_attributes = var.auto_verified_attributes
-
-  password_policy {
-    minimum_length = 8
-    require_uppercase = true
-    require_lowercase = true
-    require_numbers = true
-    require_symbols = false
-  }
+  # Verifica e-mail automaticamente
+  auto_verified_attributes = ["email"]
 }
 
-resource "cognito_user_pool_client" "client" {
-  name = "${var.name}-client"
-  user_pool_id = cognito_user_pool.this.id
+# Cria o cognito user pool client
+resource "aws_cognito_user_pool_client" "this" {
+  name = "cgnt-${var.env}-${var.project}-client"
+  user_pool_id = aws_cognito_user_pool.this.id
 
+  # Configurações de autenticação (permitir USER_PASSWORD_AUTH para teste via AWS CLI)
   generate_secret = false
+  explicit_auth_flows = ["ALLOW_USER_PASSWORD_AUTH", "ALLOW_REFRESH_TOKEN_AUTH"]
+  # Apenas Cognito como provedor
+  supported_identity_providers = ["COGNITO"]
 }

@@ -1,6 +1,8 @@
+# Criação da Role IAM para a Lambda
 resource "aws_iam_role" "lambda_exec" {
   name = var.name
 
+  # Política de confiança: permite que a Lambda assuma essa role
   assume_role_policy = jsondecode({
     Version = "2012-10-17",
     Statement = [

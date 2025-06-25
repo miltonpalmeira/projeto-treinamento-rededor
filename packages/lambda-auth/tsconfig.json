@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "types": ["vitest"],
+    "target": "es2020",
+    "module": "esnext",
+    "strict": true,
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "outDir": "./dist",
+    "skipLibCheck": true,
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*", "test/**/*.ts"],
+  "exclude": ["node_modules", "dist"]
+}
